@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Riya Bahety — Premium Graphic Design | Portfolio</title>
+  <meta name="description" content="Portfolio — Riya Bahety, Branding, Packaging, Illustration, Photoshop, Illustrator." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f0f12;
+      --card:#0e1620;
+      --muted:#9aa4ad;
+      --accent:#ff6b6b;
+      --glass: rgba(255,255,255,0.04);
+      --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#061018 0%, #071122 60%);color:#e8eef6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    header{display:flex;align-items:center;justify-content:space-between;padding:28px 6%;max-width:var(--max-width);margin:0 auto}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#ff9a9e,#fad0c4);display:flex;align-items:center;justify-content:center;font-weight:800;color:#111}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);font-weight:600;padding:8px;border-radius:8px}
+    nav a:hover{color:#fff; background: rgba(255,255,255,0.02)}
+    .hero{display:grid;grid-template-columns:1fr 480px;gap:36px;padding:36px 6%;align-items:center;max-width:var(--max-width);margin:0 auto}
+    .hero-left h1{font-size:34px;margin:0 0 12px;line-height:1.02}
+    .lead{color:var(--muted);margin-bottom:18px;max-width:58ch}
+    .chip{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:12px;font-weight:600;margin-right:8px;display:inline-block}
+    .btn{background:var(--accent);border:none;padding:12px 18px;border-radius:12px;color:#111;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .frame{width:100%;height:420px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));backdrop-filter:blur(6px);box-shadow:0 8px 30px rgba(2,6,23,0.6);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .frame img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+    /* Portfolio (inline section) */
+    .section{padding:56px 6%;max-width:var(--max-width);margin:0 auto}
+    .section h2{font-size:22px;margin:0 0 18px}
+    /* WIDER portfolio inline grid */
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* wider columns */
+      gap:18px;
+      align-items:start;
+    }
+    .card{background:var(--glass);border-radius:14px;padding:0;overflow:hidden;cursor:pointer;transition:transform .22s}
+    .card img{width:110%;height:220px;object-fit:cover;display:block}
+    .card:hover{transform:translateY(-6px)}
+    /* Full-screen portfolio overlay */
+    .portfolio-overlay{
+      position:fixed;inset:0;background:rgba(3,7,14,0.95);z-index:80;display:none;flex-direction:column;padding:28px;
+      overflow:auto;
+    }
+    .portfolio-overlay.open{display:flex}
+    .overlay-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .overlay-title{font-size:20px;font-weight:800}
+    .overlay-close{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+    /* Full-screen grid (like Instagram reel grid) */
+    .portfolio-grid-full{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr); /* wide layout for desktop */
+      gap:12px;
+      align-items:start;
+    }/* HERO animation */
+.hero-left h1 {
+  animation: fadeUp 1s ease forwards;
+}
+.hero-left .lead {
+  animation: fadeUp 1.2s ease forwards;
+}
+.chip {
+  animation: fadeUp 1.3s ease forwards;
+}
+.btn {
+  animation: fadeUp 1.4s ease forwards;
+}
+
+/* Floating hero image */
+.hero-right .frame {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Portfolio cards animation */
+.card {
+  animation: fadeUp 1s ease forwards;
+  transition: transform .25s, box-shadow .25s;
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(255,107,107,0.15);
+}
+
+/* Portfolio full-screen items */
+.portfolio-item img {
+  animation: fadeUp .8s ease forwards;
+}
+
+/* Section titles fade-up */
+.section h2 {
+  animation: fadeUp .8s ease forwards;
+}
+
+/* Buttons glow hover */
+.btn:hover {
+  animation: glowPulse 1.6s infinite;
+}
+
+    .portfolio-item {
+  height: 100vh; /* full screen height */
+  width: 400%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 20px; /* gap between images */
+  border-radius: 12px; /* optional: rounded corners for a premium look */
+}
+
+.portfolio-item img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover; /* fills container */
+  border-radius: 12px; /* match the container */
+}
+
+/* Lightbox */
+.lightbox img {
+  max-width: 90vw;       /* fill up to 90% of viewport width */
+  max-height: 90vh;      /* fill up to 90% of viewport height */
+  width: auto;           /* maintain natural width */
+  height: auto;          /* maintain natural height */
+  border-radius: 10px;
+  object-fit: contain;
+}
+/* Gradient Heading Color */
+h1, h2, h3, h4, h5, h6 {
+  background: linear-gradient(135deg, #ff6b6b, #ff9a3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+    /* responsive adjustments */
+    @media (max-width:1200px){
+      .portfolio-grid-full{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}.frame{height:320px}
+      .portfolio-grid-full{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:520px){
+    .portfolio-grid-full{grid-template-columns:repeat(1,1fr)}
+    }
+
+    /* modal image lightbox */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:90;padding:20px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:100%;max-height:90vh;border-radius:10px}
+    .lightbox .caption{color:var(--muted);margin-top:12px;text-align:center;font-size:14px}
+    /* small helpers */
+    .muted{color:var(--muted)}
+	footer {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 40px 6%;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+ }
+
+ footer .left, footer .right {
+  flex: 1;
+  min-width: 260px;
+ }
+
+ footer .left {
+  font-weight: 800;
+  font-size: 20px;
+  background: linear-gradient(135deg, #ff6b6b, #ff9a3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+ }
+
+ footer .left .subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+ }
+
+ footer .right {
+  text-align: right;
+ }
+
+ footer .right a {
+  color: #ff9a3c;
+  font-weight: 700;
+  margin-right: 12px;
+  text-decoration: none;
+ }
+
+ footer .right a:last-child {
+  margin-right: 0;
+ }
+
+ footer .right .follow {
+  color: var(--muted);
+  margin-bottom: 6px;
+ }
+
+ footer .right .copyright {
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: 12px;
+ }
+/* matches your dark-blue theme */
+.upi-card {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 22px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(10,26,47,0.9), rgba(8,18,34,0.9)); /* dark blue */
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  color: #e8eef6;
+}
+
+.upi-inner { display: flex; gap: 18px; align-items: center; justify-content: space-between; flex-wrap:wrap; }
+
+.upi-left { flex: 1 1 360px; min-width:260px; }
+.upi-right { width: 220px; display:flex;flex-direction:column;align-items:center;gap:12px }
+
+.upi-head {
+  font-weight:800; font-size:18px; margin-bottom:10px;
+  background: linear-gradient(135deg,#ff6b6b,#ff9a3c);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+.upi-id-row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.upi-id {
+  font-weight:700;
+  background: rgba(255,255,255,0.02);
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:16px;
+  letter-spacing:0.2px;
+  user-select: text;
+}
+.copy-btn {
+  background: rgba(255,255,255,0.03);
+  color: #dfe9f8;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding:8px 10px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+.copy-btn:hover { transform: translateY(-2px); }
+
+.upi-note { color: #b8c5d6; margin-top:10px; font-size:13px; }
+.upi-help { color: #9fb0c6; margin-top:8px; font-size:13px; }
+
+.qr-wrap {
+  width:180px; height:180px; border-radius:12px; overflow:hidden;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+  transition: transform .18s, box-shadow .18s;
+}
+.qr-wrap:hover { transform: translateY(-6px); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
+.qr-wrap img { width:86%; height:86%; object-fit:contain; display:block; }
+
+.qr-label { margin-top:8px; font-size:13px; color:#c9d8ec; text-align:center; }
+
+.upi-paylink {
+  display:inline-block;
+  margin-top:6px;
+  font-weight:700;
+  font-size:13px;
+  color:#ff9a3c;
+  text-decoration:none;
+  background:transparent;
+}
+
+@media (max-width:780px){
+  .upi-inner { flex-direction:column; align-items:stretch; }
+  .upi-right { width:100%; flex-direction:row; justify-content:space-between; }
+  .qr-wrap { width:140px; height:140px; }
+}
+
+/* QR Lightbox */
+.qr-lightbox {
+  position: fixed; inset:0; display:none; align-items:center; justify-content:center;
+  background: rgba(0,0,0,0.85); z-index:9999; padding:18px;
+}
+.qr-lightbox img { max-width:92vw; max-height:92vh; border-radius:12px; object-fit:contain; }
+.qr-lightbox.open { display:flex; }
+
+   GLOBAL COLORS
+-------------------- */
+:root {
+  --bg-dark: #0E0E12;
+  --pink: #FF6EA8;
+  --white: #EDEDED;
+  --grey: #C3C3C3;
+}
+
+/* --------------------
+   BASE RESET
+-------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--white);
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+}
+
+/* --------------------
+   HEADINGS
+-------------------- */
+h1, h2, h3, h4, h5 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--pink);
+  letter-spacing: 1px;
+}
+
+/* Script text (for stylish headings like “Contents”) */
+.script {
+  font-family: 'Allura', cursive;
+  color: var(--white);
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+/* --------------------
+   PARAGRAPHS
+-------------------- */
+p {
+  color: var(--grey);
+  line-height: 1.8;
+}
+
+/* --------------------
+   LINKS
+-------------------- */
+a {
+  color: var(--white);
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+a:hover {
+  color: var(--pink);
+}
+
+/* --------------------
+   BUTTONS
+-------------------- */
+button {
+  font-family: 'Montserrat', sans-serif;
+  background: transparent;
+  border: 2px solid var(--pink);
+  color: var(--pink);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: var(--pink);
+  color: var(--bg-dark);
+}
+
+/* --------------------
+   NUMBER CIRCLES
+-------------------- */
+.circle {
+  border: 2px solid var(--pink);
+  color: var(--pink);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/* --------------------
+   SECTIONS
+-------------------- */
+.section-title {
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --------------------
+   OPTIONAL CONTAINER
+-------------------- */
+.container {
+  width: 85%;
+  margin: auto;
+  padding: 60px 0;
+}
+h1,h2{
+  background: linear-gradient(135deg,var(--accent),#ff6b6b);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">RB</div>
+      <div>
+        <div style="font-weight:800">Riya Bahety</div>
+        <div style="font-size:12px;color:var(--muted)">Premium Graphic Design — Branding • Packaging • Illustration</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#portfolio" id="portfolioNav">Portfolio</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="https://instagram.com/" target="_blank" rel="noopener" style="color:var(--muted)">Instagram</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-left">
+      <h1>Design that speaks — <span style="color:var(--accent)">branding, packaging & illustration</span></h1>
+      <p class="lead">I craft premium visual identities, product packaging and illustrations that help brands stand out. Photoshop, Illustrator, packaging mockups, t-shirt prints, posters, flyers and more.</p>
+
+      <div style="margin-bottom:18px">
+        <span class="chip">Logo Design</span>
+        <span class="chip">Branding</span>
+        <span class="chip">Packaging</span>
+        <span class="chip">Illustration</span>
+      </div>
+
+      <div style="display:flex;gap:12px">
+        <button class="btn" onclick="openPortfolioOverlay()">Open portfolio</button>
+        <button class="btn ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+      </div>
+
+      <p class="muted" style="margin-top:14px;font-size:13px">Based in India • Available for freelance & collaborations • Fast turnaround</p>
+    </div>
+
+    <div class="hero-right" aria-hidden="false">
+      <div class="frame" role="img" aria-label="Featured work">
+        <img src="PORTFOLIO\LOGO-DESIGNWITHRIAA.jpg" alt="Featured work">
+      </div>
+    </div>
+  </section>
+
+  <!-- INLINE PORTFOLIO (preview) -->
+  <section id="portfolio" class="section" aria-label="Portfolio preview">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+      <h2>Portfolio</h2>
+      <div>
+        <button class="chip" onclick="openPortfolioOverlay()">Open full portfolio</button>
+      </div>
+    </div>
+
+    <div class="portfolio-grid" id="portfolioPreview">
+      <!-- Use your local images here; add more images as needed -->
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\1.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\3.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\6.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\9.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\12.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\14.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\17.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\20.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\22.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\25.png" alt="Logo Folio">
+      </div>
+	  <div class="card" data-caption="Project — Logo Folio " onclick="openLightbox(this)">
+        <img src="PORTFOLIO\28.jpg" alt="Logo Folio">
+      </div>
+    </div>
+  </section>
+  
+<!-- SKILLS SECTION -->
+<section id="skills" class="section" aria-label="Skills">
+  <h2>Skills</h2>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:20px">
+
+    <!-- Designer Skills -->
+    <div class="card" style="padding:20px">
+      <div style="font-weight:800;font-size:18px;margin-bottom:10px">Designer Skills</div>
+      <ul style="color:var(--muted);line-height:1.6;font-size:14px">
+        <li>Branding & Visual Identity</li>
+        <li>Typography & Layout Design</li>
+        <li>Packaging Design</li>
+        <li>Illustration (Vector + Digital)</li>
+        <li>Social Media Creatives</li>
+		<li>Magazine Layout</li>
+        <li>Mockups & Presentation Design</li>
+        <li>Color Psychology</li>
+        <li>Creative Direction</li>
+      </ul>
+    </div>
+
+    <!-- Developer Skills -->
+    <div class="card" style="padding:20px">
+      <div style="font-weight:800;font-size:18px;margin-bottom:10px">Developer Skills</div>
+      <ul style="color:var(--muted);line-height:1.6;font-size:14px">
+        <li>HTML5 / CSS3</li>
+        <li>JavaScript (Basic)</li>
+        <li>Responsive Web Design</li>
+        <li>UI/UX Wireframing</li>
+        <li>Figma to Web Conversion</li>
+        <li>Web Animations</li>
+		<li>Premium Pro</li>
+		<li>After Effect</li>
+        <li>Portfolio Website Development</li>
+      </ul>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section" aria-label="Services">
+  <h2>Services & Packages</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Brand Identity</div>
+      <p style="color:var(--muted);font-size:13px">Logo, brand guidelines, color palette, typography, and stationery.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹7,999</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Packaging Design</div>
+      <p style="color:var(--muted);font-size:13px">Dieline, artwork, mockups and production-ready files.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹6,499</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Magazine & Editorial Design</div>
+      <p style="color:var(--muted);font-size:13px">Full layouts, spreads, typography, and print-ready files.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹7,499</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Motion Graphics & Video Editing</div>
+      <p style="color:var(--muted);font-size:13px">Short social clips, animated posts, and branding motion using Premiere Pro & After Effects.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹5,999</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Interactive PDFs & Presentations</div>
+      <p style="color:var(--muted);font-size:13px">Brand presentations, proposals, or pitch decks with interactive features.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹4,499</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Social Media Branding Kit</div>
+      <p style="color:var(--muted);font-size:13px">Templates for Instagram, Facebook, Pinterest — editable and ready to post.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹2,999</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Merch & Apparel Designs</div>
+      <p style="color:var(--muted);font-size:13px">T-shirts, hoodies, tote bags — all mockups included.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹2,999</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div style="font-weight:800">Event Posters & Flyers</div>
+      <p style="color:var(--muted);font-size:13px">Print-ready graphics for events, launches, or campaigns.</p>
+      <div style="margin-top:10px;font-weight:700">From ₹1,999</div>
+    </div>
+
+  </div>
+</section>
+ <!-- ===== UPI PAYMENT (Stylish Text + Emojis) ===== -->
+<section class="upi-card" aria-label="UPI Payment">
+  <div class="upi-inner">
+    <div class="upi-left">
+      <div class="upi-head"> UPI Payment Available</div>
+      <div class="upi-id-row">
+        <div id="upiId" class="upi-id">rriyabahety@okaxis</div>
+        <button class="copy-btn" id="copyBtn" title="Copy UPI ID">Copy</button>
+      </div>
+      <div class="upi-note">Works with GPay • PhonePe • Paytm • BHIM</div>
+      <div class="upi-help">Scan the QR or copy the UPI ID to pay. </div>
+    </div>
+
+    <div class="upi-right">
+      <div class="qr-wrap" onclick="openQrLightbox()">
+        <img src="PORTFOLIO\scanner.jpg" alt="Scan to pay" id="qrImg">
+      </div>
+	  <div class="upi-note">Works with GPay • PhonePe • Paytm • BHIM</div>
+      <a class="upi-paylink" href="#" onclick="alert('Open your UPI app and paste UPI ID or scan QR')">Open UPI app →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox for QR -->
+<div id="qrLightbox" class="qr-lightbox" onclick="closeQrLightbox(event)">
+  <img id="qrLightboxImg" src="qr.png" alt="UPI QR">
+</div>
+
+  <section id="about" class="section" aria-label="About">
+  <h2>About Me</h2>
+  <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:260px">
+      <p style="color:var(--muted)">
+        Hi — I'm <strong>Riya Bahety</strong>, running my creative design page <strong>@riadesignhub</strong>. 
+        I specialize in branding, packaging, and illustration, crafting designs that communicate clearly 
+        and stand out. Follow my work and get in touch through my official page.
+      </p>
+      <ul style="color:var(--muted);margin-top:8px">
+        <li>Branding & packaging design</li>
+        <li>Illustration & concept art</li>
+        <li>Available for collaborations</li>
+      </ul>
+     <p style="color:var(--muted);margin-top:12px">
+        📧 Email: <a href="mailto:riadesignhub@gmail.com" style="color:var(--accent)">riadesignhub@gmail.com</a><br>
+        🔗 LinkedIn: <a href="https://www.linkedin.com/in/riya-bahety-a19b3a39b" target="_blank" style="color:var(--accent)">Riya Bahety</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section" style="padding-top:30px" aria-label="Contact">
+  <h2>Contact — Let's start your project</h2>
+  <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start">
+    <div>
+      <!-- Yahan pe form daalna hai -->
+      <form id="contactForm" action="https://formspree.io/f/mnnybzaj" method="POST" onsubmit="submitContact(event)">
+  <label style="font-weight:700">Your name</label>
+  <input required name="name" placeholder="Full name" style="width:100%;padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit"/>
+  
+  <label style="font-weight:700;margin-top:8px;display:block">Email</label>
+  <input required name="email" type="email" placeholder="you@email.com" style="width:100%;padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit"/>
+  
+  <label style="font-weight:700;margin-top:8px;display:block">Project brief</label>
+  <textarea required name="message" rows="6" placeholder="Tell me about your project, budget & deadline" style="width:100%;padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit"></textarea>
+  
+  <div style="margin-top:10px">
+    <button class="btn" type="submit">Send inquiry</button>
+  </div>
+</form> 
+    </div>
+      <div style="background:var(--glass);padding:14px;border-radius:12px">
+        <div style="font-weight:800">Quick info</div>
+        <div style="color:var(--muted);margin-top:8px">Typical turnaround: 3–10 days depending on scope. Payment: 50% upfront for new clients.</div>
+        <div style="margin-top:12px"><div style="font-weight:700">Follow</div><div style="margin-top:6px;color:var(--muted)">Instagram • Behance • Linkedin</div></div>
+      </div>
+  </div>
+</section>
+ <!-- FULL-SCREEN PORTFOLIO OVERLAY -->
+<div id="portfolioOverlay" class="portfolio-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="overlay-header">
+        <div class="overlay-title"> PORTFOLIO </div>
+        <div>
+            <button class="overlay-close" onclick="closePortfolioOverlay()">Close</button>
+        </div>
+    </div>
+
+    <div class="portfolio-grid-full" id="portfolioGridFull">
+
+        <!-- Portfolio preview -->
+        <section id="portfolio" class="portfolio-fullscreen">
+             <div class="portfolio-item">
+                <img src="PORTFOLIO\portfolio.jpg" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="portfolio\table of content.jpg" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\1.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\2.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\3.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\4.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\5.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\6.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\7.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\8.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\9.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\10.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\11.png" alt="Project 1">
+            </div>
+			 <div class="portfolio-item">
+                <img src="PORTFOLIO\12.png" alt="Project 1">
+            </div> 
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\13.PNG" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\14.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\15.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\16.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\17.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\18.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\19.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\20.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\21.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\22.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\23.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\24.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\25.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\26.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\27.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\28.jpg" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\29.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\30.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\31.png" alt="Project 1">
+            </div>
+			<div class="portfolio-item">
+                <img src="PORTFOLIO\thankyou.jpg" alt="Project 1">
+            </div>
+        </section>
+
+        <div style="height:40px"></div>
+    </div>
+</div>   <!-- <<< THIS closes the overlay correctly -->
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" onclick="closeLightbox(event)">
+    <div style="text-align:center">
+        <img id="lightboxImg" src="" alt="">
+        <div class="caption" id="lightboxCaption"></div>
+    </div>
+</div>
+<!-- FOOTER START (NOW CORRECT POSITION!) -->
+<footer>
+    <div class="left">
+        Riya Bahety 
+        <div class="subtitle">Premium Graphic Designer — Logo Design • Branding • Packaging • Illustration</div>
+	   <div class="subtitle"><a href="mailto:riadesignhub@gmail.com">riadesignhub@gmail.com</a></div>
+    </div>
+    <div class="right">
+        <div class="follow">Follow me</div>
+        <a href="https://www.instagram.com/ria_designhub?igsh=eHY3a2V4ZHdieW5y" target="_blank">Instagram</a>
+        <a href="http://www.linkedin.com/in/riadesignhub" target="_blank">Linkedin</a>
+        <a href="https://www.behance.net/riyabahety02" target="_blank">Behance</a>
+        <div class="copyright">© 2025 Riya Bahety — All rights reserved.</div>
+    </div>
+</footer>
+<!-- FOOTER END -->
+  <script>
+    // year
+    // Open full-screen portfolio overlay
+    function openPortfolioOverlay(){
+      const o = document.getElementById('portfolioOverlay');
+      o.classList.add('open');
+      o.setAttribute('aria-hidden','false');
+      // focus trapping could be added later
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function closePortfolioOverlay(){
+      const o = document.getElementById('portfolioOverlay');
+      o.classList.remove('open');
+      o.setAttribute('aria-hidden','true');
+    }
+
+    // Also allow clicking the top nav "Portfolio" to open overlay instead of scroll:
+    document.getElementById('portfolioNav').addEventListener('click', function(e){
+      e.preventDefault();
+      openPortfolioOverlay();
+    });
+
+    // Lightbox functions
+    function openLightbox(el){
+      // el may be .card or .item: find img inside
+      const img = el.querySelector('img');
+      if(!img) return;
+      const src = img.getAttribute('src');
+      const alt = img.getAttribute('alt') || '';
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxImg').alt = alt;
+      document.getElementById('lightboxCaption').textContent = alt;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+    }
+    function closeLightbox(e){
+      // close when clicking outside image or pressing Escape
+      if(e && e.target && e.target.id && e.target.id === 'lightbox') {
+        const lb = document.getElementById('lightbox');
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+      } else if(!e){ // programmatic
+        const lb = document.getElementById('lightbox');
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden','true');
+      }
+    }
+    // close on Esc
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        closeLightbox();
+        closePortfolioOverlay();
+      }
+    });
+
+    // Contact form placeholder behavior
+    function submitContact(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const subject = encodeURIComponent('New design inquiry from ' + (data.get('name') || ''));
+      const body = encodeURIComponent('Email: '+(data.get('email')||'')+'\n\n'+(data.get('message')||''));
+      window.location.href = `mailto:riadesignhub@gmail.com?subject=${subject}&body=${body}`;
+      form.reset();
+    }
+  // Contact form functionality
+  function submitContact(e){
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    const name = data.get('name') || '';
+    const email = data.get('email') || '';
+    const message = data.get('message') || '';
+
+    if(!name || !email || !message){
+      alert('Please fill all fields before submitting.');
+      return;
+    }
+
+    const subject = encodeURIComponent('New design inquiry from ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+
+    // Open default email client
+    window.location.href = `mailto:riadesignhub@gmail.com?subject=${subject}&body=${body}`;
+
+    // Optional: confirmation alert
+    alert('Your email client will open to send the message.');
+
+    // Reset form
+    form.reset();
+  }
+  // copy UPI ID
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    const id = document.getElementById('upiId').textContent.trim();
+    if(!id) return;
+    navigator.clipboard?.writeText(id).then(() => {
+      const btn = document.getElementById('copyBtn');
+      const old = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      setTimeout(()=> btn.textContent = old, 1800);
+    }).catch(()=> {
+      alert('Copy failed — please long-press the ID to copy on mobile.');
+    });
+  });
+
+  // QR lightbox open/close
+  function openQrLightbox(){
+    const lb = document.getElementById('qrLightbox');
+    document.getElementById('qrLightboxImg').src = document.getElementById('qrImg').src;
+    lb.classList.add('open');
+  }
+  function closeQrLightbox(e){
+    if(e.target && e.target.id === 'qrLightbox'){
+      document.getElementById('qrLightbox').classList.remove('open');
+    }
+  }
+  </script>
+</body>
+</html>
